@@ -1,0 +1,19 @@
+language: android
+jdk: oraclejdk7
+env:
+  matrix:
+    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+
+before_install:
+  - chmod +x dependencies.sh
+  - ./dependencies.sh
+
+cache:
+  directories:
+  - android-ndk-r10b
+  
+android:
+  components:
+    - build-tools-23.0.0
+
+script: gradle -p GVRf clean build -x lint
