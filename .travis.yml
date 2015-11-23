@@ -15,5 +15,10 @@ cache:
 android:
   components:
     - build-tools-23.0.0
+	
+# whitelist
+branches:
+  only:
+    - development
 
 script: gradle -p GVRf/Framework clean build -x lint
