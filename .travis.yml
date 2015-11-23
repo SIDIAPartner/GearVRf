@@ -16,4 +16,4 @@ android:
   components:
     - build-tools-23.0.0
 
-script: gradle -p GVRf clean build -x lint
+script: gradle -p GVRf/Framework clean build -x lint

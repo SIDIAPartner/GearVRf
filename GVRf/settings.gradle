@@ -5,7 +5,7 @@ include ':Sample'
 
 project(':Framework').projectDir = "$rootDir/Framework" as File
 
-new File('GVRf/Sample').eachDir { dir ->
+new File("$rootDir/Sample").eachDir { dir ->
     if(new File(dir.getPath().concat("/build.gradle")).exists()){
         include(':Sample:' + dir.getName())
     }
