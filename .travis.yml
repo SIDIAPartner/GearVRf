@@ -11,14 +11,9 @@ before_install:
 cache:
   directories:
   - android-ndk-r10b
-
-branches:
-  only:
-  - development
-  - travis_ci_configuration
   
 android:
   components:
     - build-tools-23.0.0
 
-script: gradle -p GVRf/Framework build -x lint --debug --info --stacktrace
+script: gradle -p GVRf/Framework build -x lint
