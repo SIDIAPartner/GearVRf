@@ -21,4 +21,4 @@ android:
   components:
     - build-tools-23.0.0
 
-script: gradle -p GVRf/Framework build -x lint
+script: gradle -p GVRf/Framework build -x lint --debug --info --stacktrace
