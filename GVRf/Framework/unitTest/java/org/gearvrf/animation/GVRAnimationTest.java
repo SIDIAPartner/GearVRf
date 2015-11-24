@@ -27,7 +27,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * Created by darlison.osorio on 12/11/2015.
  *
  * Test cases for test on GVRAnimation class
  *

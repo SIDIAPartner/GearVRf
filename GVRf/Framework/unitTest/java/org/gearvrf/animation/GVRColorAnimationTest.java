@@ -24,7 +24,6 @@ import org.powermock.core.classloader.annotations.SuppressStaticInitializationFo
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- * Created by darlison.osorio on 12/11/2015.
  *
  * Test cases of GVRColorAnimationTest class
  */
