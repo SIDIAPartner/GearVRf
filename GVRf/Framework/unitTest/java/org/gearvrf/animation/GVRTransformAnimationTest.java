@@ -32,9 +32,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-/**
- * Created by darlison.osorio on 16/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SparseArray.class, GVRMaterialShaderId.class, GVRTransformAnimation.class, TextUtils.class})
 @SuppressStaticInitializationFor({

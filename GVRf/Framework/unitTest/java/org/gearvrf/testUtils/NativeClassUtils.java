@@ -1,8 +1,5 @@
 package org.gearvrf.testUtils;
 
-/**
- * Created by darlison.osorio on 12/11/2015.
- */
 public class NativeClassUtils {
 
     /** The native class NativeMaterial name */

@@ -25,9 +25,6 @@ import org.powermock.core.classloader.annotations.SuppressStaticInitializationFo
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-/**
- * Created by darlison.osorio on 13/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SparseArray.class, TextUtils.class, Color.class})
 @SuppressStaticInitializationFor({

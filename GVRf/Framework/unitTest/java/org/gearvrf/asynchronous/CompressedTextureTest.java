@@ -24,9 +24,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by darlison.osorio on 23/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ByteBuffer.class, GVRContext.class, GVRCompressedTextureLoader.class})
 @SuppressStaticInitializationFor({NativeClassUtils.NATIVE_COMPRESSED_TEXTURE, NativeClassUtils.NATIVE_TEXTURE, NativeClassUtils.GLES20})

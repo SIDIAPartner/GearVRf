@@ -38,9 +38,6 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-/**
- * Created by darlison.osorio on 19/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({
         Throttler.class,

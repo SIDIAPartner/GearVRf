@@ -50,9 +50,6 @@ import java.nio.channels.FileChannel;
 import static android.opengl.GLES20.GL_MAX_TEXTURE_SIZE;
 import static android.opengl.GLES20.glGetIntegerv;
 
-/**
- * Created by darlison.osorio on 17/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Throttler.class,BitmapFactory.Options.class, AsyncBitmapTexture.class,
         BitmapRegionDecoder.class, BitmapFactory.class, Bitmap.class, RecycleBin.class})

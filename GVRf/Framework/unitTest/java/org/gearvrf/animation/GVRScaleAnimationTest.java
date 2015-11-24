@@ -18,9 +18,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.core.classloader.annotations.SuppressStaticInitializationFor;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-/**
- * Created by darlison.osorio on 16/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SparseArray.class, GVRMaterialShaderId.class,  TextUtils.class})
 @SuppressStaticInitializationFor({

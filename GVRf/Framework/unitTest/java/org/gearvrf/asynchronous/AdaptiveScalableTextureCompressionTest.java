@@ -16,9 +16,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-/**
- * Created by darlison.osorio on 16/11/2015.
- */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SparseArray.class, TextUtils.class})
 public class AdaptiveScalableTextureCompressionTest {
