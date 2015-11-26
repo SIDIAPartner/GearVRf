@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -26,22 +27,18 @@ import org.powermock.core.classloader.annotations.SuppressStaticInitializationFo
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-@RunWith(PowerMockRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @PrepareForTest({SparseArray.class, TextUtils.class, GVRMaterialShaderId.class, GVRMaterialAnimation.class,  Color.class})
-@SuppressStaticInitializationFor({
-        NativeClassUtils.NATIVE_MATERIAL,
-        NativeClassUtils.NATIVE_SCENE_OBJECT,
-        NativeClassUtils.NATIVE_TRANSFORM,
-        NativeClassUtils.NATIVE_RENDER_DATA,
-        NativeClassUtils.NATIVE_RENDER_PASS})
 public class GVRMaterialAnimationTest {
 
     //custom class for test
     private static final class TestMaterialAnimation extends GVRMaterialAnimation {
         //constructor
-        private TestMaterialAnimation(GVRSceneObject target, float duration) { super(target, duration); }
+        private TestMaterialAnimation(GVRSceneObject target, float duration) { super((GVRSceneObject)target, duration); }
         @Override
-        protected void animate(GVRHybridObject target, float ratio) {}
+        protected void animate(GVRHybridObject target, float ratio) {
+            //nothing to implement
+        }
     }
 
     private final float duration = 10.0f;
@@ -55,30 +52,6 @@ public class GVRMaterialAnimationTest {
     public void initGVRMaterialAnimationTest() throws Exception {
 
         context = Mockito.mock(GVRContext.class);
-        PowerMockito.mockStatic(SparseArray.class);
-        PowerMockito.mockStatic(TextUtils.class);
-        PowerMockito.mockStatic(Color.class);
-        PowerMockito.mockStatic(GVRMaterialShaderId.class);
-
-        PowerMockito.mockStatic(Class.forName(NativeClassUtils.NATIVE_MATERIAL));
-        PowerMockito.mockStatic(Class.forName(NativeClassUtils.NATIVE_SCENE_OBJECT));
-        PowerMockito.mockStatic(Class.forName(NativeClassUtils.NATIVE_TRANSFORM));
-        PowerMockito.mockStatic(Class.forName(NativeClassUtils.NATIVE_RENDER_DATA));
-        PowerMockito.mockStatic(Class.forName(NativeClassUtils.NATIVE_RENDER_PASS));
-
-        SparseArray array = Mockito.mock(SparseArray.class);
-
-
-        PowerMockito.whenNew(SparseArray.class).withAnyArguments().thenReturn(array);
-        PowerMockito.whenNew(GVRMaterialShaderId.class).withAnyArguments().thenReturn(Mockito.mock(GVRMaterialShaderId.class));
-        PowerMockito.when(TextUtils.isEmpty(Mockito.anyString())).thenReturn(false);
-
-        PowerMockito.when(array, "put", Mockito.anyInt(), Mockito.any()).then(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                return null;
-            }
-        });
 
         material = PowerMockito.mock(GVRMaterial.class);
     }
@@ -93,6 +66,8 @@ public class GVRMaterialAnimationTest {
         Mockito.when(object.getRenderData()).thenReturn(renderData);
 
         final TestMaterialAnimation animation = new TestMaterialAnimation(object, duration);
+        animation.animate(material, 2.0f);
+
         Assert.assertEquals(material, Whitebox.getInternalState(animation, "mMaterial"));
 
     }

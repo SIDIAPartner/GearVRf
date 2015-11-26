@@ -120,9 +120,20 @@ public class GVRAnimationTest {
      */
     @Test
     public void setRepeatCountTest() {
-        final int repeatCount = 8;
+        final int repeatCount = 0;
         animation.setRepeatCount(repeatCount);
         Assert.assertEquals(repeatCount, animation.getRepeatCount());
+
+        final GVRAnimationEngine engine = GVRAnimationEngine.getInstance(context);
+
+        //start animation
+        animation.start(engine);
+
+        List animations = (List)Whitebox.getInternalState(engine, "mAnimations");
+
+        //didn't add to animations list due to repeat count 0
+        Assert.assertEquals(0, animations.size());
+
     }
 
     /**
@@ -208,7 +219,7 @@ public class GVRAnimationTest {
         animations = (List)Whitebox.getInternalState(engine, "mAnimations");
 
         //verify animations size
-        Assert.assertEquals(0, animations.size() );
+        Assert.assertEquals(0, animations.size());
     }
 
     /**

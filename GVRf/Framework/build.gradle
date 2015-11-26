@@ -26,6 +26,10 @@ android {
         test.setRoot('unitTest')
     }
 
+    jacoco {
+        version "0.7.1.201405082137"
+    }
+
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn nativeLibsToJar
     }
@@ -90,6 +94,10 @@ android {
     }
 }
 
+jacoco {
+    toolVersion "0.7.1.201405082137"
+}
+
 sonarqube {
     properties {
         property "sonar.projectName", "GearVRf"
@@ -141,12 +149,10 @@ dependencies {
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile 'org.apache.commons:commons-math3:3.5'
     testCompile 'com.android.support:support-v4:19.0.1'
-    testCompile ('org.powermock:powermock-api-mockito:1.6.2') {
-        exclude module: 'hamcrest-core'
-        exclude module: 'objenesis'
-    }
-    testCompile ('org.powermock:powermock-module-junit4:1.6.2') {
-        exclude module: 'hamcrest-core'
-        exclude module: 'objenesis'
-    }
+    testCompile 'org.powermock:powermock-api-mockito:1.6.2'
+    testCompile 'org.powermock:powermock-module-junit4:1.6.2'
+    testCompile 'org.powermock:powermock-module-javaagent:1.6.2'
+    testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.2'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.2'
+    testCompile "org.powermock:powermock-classloading-xstream:1.6.2"
 }

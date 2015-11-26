@@ -36,9 +36,11 @@ public class GVRPostEffectAnimationTest {
     //custom class for test
     private static final class TestPostEffectAnimation extends GVRPostEffectAnimation {
         //constructor
-        private TestPostEffectAnimation(GVRPostEffect target, float duration) { super(target, duration); }
+        private TestPostEffectAnimation(GVRPostEffect target, float duration) { super((GVRPostEffect)target, duration); }
         @Override
-        protected void animate(GVRHybridObject target, float ratio) {}
+        protected void animate(GVRHybridObject target, float ratio) {
+            //no necessary implementation
+        }
     }
 
     private final float duration = 10.0f;
@@ -71,6 +73,8 @@ public class GVRPostEffectAnimationTest {
     public void newMaterialAnimationClassWithGVRSceneObjectTest() throws Exception {
 
         final TestPostEffectAnimation animation = new TestPostEffectAnimation(postEffect, duration);
+        animation.animate(postEffect, 2.0f);
+
         Assert.assertEquals(postEffect, Whitebox.getInternalState(animation, "mPostEffectData"));
         Assert.assertEquals(duration, animation.getDuration());
     }
