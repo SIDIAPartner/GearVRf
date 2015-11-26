@@ -28,7 +28,11 @@ public class GVRAccelerateDecelerateInterpolatorTest {
 
        final GVRAccelerateDecelerateInterpolator interpolator = GVRAccelerateDecelerateInterpolator.getInstance();
 
+       final GVRAccelerateDecelerateInterpolator secondInterpolator = GVRAccelerateDecelerateInterpolator.getInstance();
+
        final float result = interpolator.mapRatio(mapRatio);
+
+       Assert.assertEquals(interpolator, secondInterpolator);
 
        Assert.assertEquals(mapRatio, result);
 
