@@ -303,9 +303,24 @@ public class GVRScene extends GVRHybridObject {
     public void killStatMessage() {
         mStatMessage.delete(0, mStatMessage.length());
     }
+    
+    
+ 	private GVRDirectionalLight mDirectionalLight;
+
+ 	public void setDirectionalLight(GVRDirectionalLight light) {
+ 		mDirectionalLight = light;
+		if (light != null) {
+			NativeScene.attachDirectionalLight(getNative(), light.getNative());
+		} else {
+			NativeScene.attachDirectionalLight(getNative(), 0);
+		}
+ 	}
 }
 
 class NativeScene {
+	
+	static native void attachDirectionalLight(long scene, long light);
+
     static native long ctor();
 
     static native void addSceneObject(long scene, long sceneObject);

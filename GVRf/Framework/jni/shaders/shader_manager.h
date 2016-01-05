@@ -36,6 +36,9 @@
 #include "shaders/material/assimp_shader.h"
 #include "util/gvr_log.h"
 
+
+#include "shaders/posteffect/shadow_shader.h"
+
 namespace gvr {
 class ShaderManager: public HybridObject {
 public:
@@ -45,7 +48,7 @@ public:
             oes_shader_(), oes_horizontal_stereo_shader_(), oes_vertical_stereo_shader_(),
             cubemap_shader_(), cubemap_reflection_shader_(), texture_shader_(), assimp_shader_(),
             external_renderer_shader_(), error_shader_(), latest_custom_shader_id_(
-                    INITIAL_CUSTOM_SHADER_INDEX), custom_shaders_() {
+                    INITIAL_CUSTOM_SHADER_INDEX), custom_shaders_(),shadow_shader_() {
     }
     ~ShaderManager() {
         delete unlit_horizontal_stereo_shader_;
@@ -59,6 +62,7 @@ public:
         delete external_renderer_shader_;
         delete assimp_shader_;
         delete error_shader_;
+        delete shadow_shader_;
         // We don't delete the custom shaders, as their Java owner-objects will do that for us.
     }
     BoundingBoxShader* getBoundingBoxShader() {
@@ -150,6 +154,12 @@ public:
             throw "ShaderManager::getCustomShader()";
         }
     }
+	ShadowShader* getShadowShader() {
+		if (!shadow_shader_) {
+			shadow_shader_ = new ShadowShader();
+		}
+		return shadow_shader_;
+	}
 
 private:
     ShaderManager(const ShaderManager& shader_manager);
@@ -173,6 +183,7 @@ private:
     ErrorShader* error_shader_;
     int latest_custom_shader_id_;
     std::map<int, CustomShader*> custom_shaders_;
+    ShadowShader* shadow_shader_;
 };
 
 }
